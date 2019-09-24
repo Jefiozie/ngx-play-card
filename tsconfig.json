@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-play-card": [
+        "dist/ngx-play-card"
+      ],
+      "ngx-play-card/*": [
+        "dist/ngx-play-card/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -1,0 +1,8 @@
+{
+  "name": "@jefiozie/ngx-play-card",
+  "version": "0.0.0-development",
+  "peerDependencies": {
+    "@angular/common": "^8.2.7",
+    "@angular/core": "^8.2.7"
+  }
+}

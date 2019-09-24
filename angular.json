@@ -2,5 +2,163 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-play-card": {
+      "projectType": "library",
+      "root": "projects/ngx-play-card",
+      "sourceRoot": "projects/ngx-play-card/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-play-card/tsconfig.lib.json",
+            "project": "projects/ngx-play-card/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-play-card/src/test.ts",
+            "tsConfig": "projects/ngx-play-card/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-play-card/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-play-card/tsconfig.lib.json",
+              "projects/ngx-play-card/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "play-card-example": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/play-card-example",
+      "sourceRoot": "projects/play-card-example/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/play-card-example",
+            "index": "projects/play-card-example/src/index.html",
+            "main": "projects/play-card-example/src/main.ts",
+            "polyfills": "projects/play-card-example/src/polyfills.ts",
+            "tsConfig": "projects/play-card-example/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/play-card-example/src/favicon.ico",
+              "projects/play-card-example/src/assets"
+            ],
+            "styles": [
+              "projects/play-card-example/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/play-card-example/src/environments/environment.ts",
+                  "with": "projects/play-card-example/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "play-card-example:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "play-card-example:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "play-card-example:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/play-card-example/src/test.ts",
+            "polyfills": "projects/play-card-example/src/polyfills.ts",
+            "tsConfig": "projects/play-card-example/tsconfig.spec.json",
+            "karmaConfig": "projects/play-card-example/karma.conf.js",
+            "assets": [
+              "projects/play-card-example/src/favicon.ico",
+              "projects/play-card-example/src/assets"
+            ],
+            "styles": [
+              "projects/play-card-example/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/play-card-example/tsconfig.app.json",
+              "projects/play-card-example/tsconfig.spec.json",
+              "projects/play-card-example/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/play-card-example/e2e/protractor.conf.js",
+            "devServerTarget": "play-card-example:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "play-card-example:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ngx-play-card"
 }

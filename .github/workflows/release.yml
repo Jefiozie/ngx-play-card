@@ -1,0 +1,24 @@
+name: release
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build:
+    runs-on: ubuntu-16.04
+    strategy:
+      matrix:
+        node: [ '10' ]
+    name: Relase with Node v:${{ matrix.node }}
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup node
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm install
+      - run: npm test
+      - run: npm run semantic-release
