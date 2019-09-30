@@ -1,5 +1,5 @@
 name: tests
-on: [push, pull_request]
+on: [push]
   branches:
     - master
 jobs:
@@ -19,4 +19,4 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install
-      - run: npm test
+      - run: npm semantic-release
