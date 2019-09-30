@@ -17,8 +17,9 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
+            "preset": "jest-preset-angular",
             "main": "projects/ngx-play-card/src/test.ts",
             "tsConfig": "projects/ngx-play-card/tsconfig.spec.json",
             "karmaConfig": "projects/ngx-play-card/karma.conf.js"
@@ -117,7 +118,7 @@
           }
         },
         "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+          "builder": "@angular-builders/jest:run",
           "options": {
             "main": "projects/play-card-example/src/test.ts",
             "polyfills": "projects/play-card-example/src/polyfills.ts",
