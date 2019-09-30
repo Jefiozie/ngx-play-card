@@ -1,8 +1,9 @@
-name: tests
- on:
+name: release
+on:
   push:
-   branches:
+    branches:
     - master
+    - release/*
 jobs:
   build:
     runs-on: ubuntu-16.04
@@ -20,4 +21,4 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm install
-      - run: npm test
+      - run: npm semantic-release

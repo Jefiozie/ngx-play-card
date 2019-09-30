@@ -1,6 +1,7 @@
-name: test-on-commit
- on: pull_request
-  branches:
+name: tests
+on:
+  pull_request:
+    branches:
     - master
 jobs:
   build:
