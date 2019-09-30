@@ -1,4 +1,4 @@
-name: tests
+name: test-on-commit
 on: [push, pull_request]
   branches:
     - master
