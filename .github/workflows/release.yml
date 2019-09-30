@@ -1,7 +1,9 @@
 name: release
-on: push
-  branches:
+on:
+  push:
+    branches:
     - master
+    - release/*
 jobs:
   build:
     runs-on: ubuntu-16.04
